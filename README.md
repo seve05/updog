@@ -1,4 +1,6 @@
 # vcont
+Version control for my local network using NFS.
+This works for Linux only, atm. Not sure about WSL.
 
 Requires: a running NFS Server, the user to know the dir + ip 
 
@@ -7,5 +9,7 @@ sudo chmod +x installvcont.sh
 
 ./installvcont.sh
 
-Version control for my local network using NFS.
-This works for Linux only, atm. Not sure about WSL.
+Once installed:
+
+vcont myfile.filenameextension
+
