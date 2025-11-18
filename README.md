@@ -1,9 +1,9 @@
 # vcont
 Version control for my local network using NFS.
 
-Requires: a running NFS Server, the user to know the dir + ip 
+Requires: a running NFS Server; the user to know the target dir + ip 
 
-#Usage:
+Usage:
 sudo chmod +x installvcont.sh
 
 ./installvcont.sh
