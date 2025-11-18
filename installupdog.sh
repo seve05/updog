@@ -8,7 +8,7 @@ echo $IP > nfsipaddr.txt
 echo "You can updog the IP adress of the server in case you want to change it in ~bin/nfsipaddr.txt"
 
 #if future me ever gets asked this question: no indents because EOF syntax "here document" wont allow for it.
-if ![ -e "$HOME/updog" ]; then
+if ! [[ -f "$HOME/updog" ]]; then
 cat > updog << 'EOF'
 #!/bin/bash
 IPadrpath="./nfsipaddr.txt"
@@ -22,7 +22,7 @@ echo "updog already exists, exiting"
 exit 1
 fi
 
-if ![ -e "$HOME/networkfolder" ]; then
+if ! [[ -f "$HOME/networkfolder" ]]; then
 	mkdir -p "$HOME/networkfolder"
 else
 	echo "cant create networkfolder, already exists, if intentional: please ignore"
