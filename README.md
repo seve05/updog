@@ -1,4 +1,4 @@
-# Version control for my local network running linux.
+# simple version control cl command for my local nfs network to keep parity between machines.
 
 Requires: a running NFS Server; the user to know the target dir + ip 
 
