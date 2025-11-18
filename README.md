@@ -1,12 +1,12 @@
-# vcont
+# updog
 Version control for my local network using NFS.
 
 Requires: a running NFS Server; the user to know the target dir + ip 
 
 Usage:
-sudo chmod +x installvcont.sh
+sudo chmod +x installupdog.sh
 
-./installvcont.sh
+./updog.sh
 
 Once installed:
 
