@@ -1,6 +1,5 @@
 # vcont
 Version control for my local network using NFS.
-This works for Linux only, atm. Not sure about WSL.
 
 Requires: a running NFS Server, the user to know the dir + ip 
 
