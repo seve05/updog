@@ -1,4 +1,4 @@
-# updog
+#updog it to the nfs server
 Version control for my local network using NFS.
 
 Requires: a running NFS Server; the user to know the target dir + ip 
