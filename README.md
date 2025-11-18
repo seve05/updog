@@ -12,4 +12,4 @@ Once installed:
 
 vcont myfile.filenameextension
 
-You can reconfigure the IP of the server in ~bin/nfsipadr.txt. 
+You can reconfigure the IP of the server in ~bin/nfsipaddr.txt. 
