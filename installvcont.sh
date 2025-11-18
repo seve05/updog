@@ -7,7 +7,7 @@ echo $IP > nfsipaddr.txt
 echo "You can change the IP in ~bin/nfsipaddr.txt"
 cat > vcont << 'EOF'
 #!/bin/bash
-IPadrpath="./ipaddr.txt"
+IPadrpath="./nfsipaddr.txt"
 IPadr=$(cat "$IPadrpath")
 sudo mount -t nfs "$IPadr":mnt/networkshare "$HOME/networkfolder"
 dest="$HOME/networkfolder"
