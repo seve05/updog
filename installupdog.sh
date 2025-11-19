@@ -5,12 +5,12 @@
 #den wir entfernen wollen um durch neue IP und server  mountpoint zu ersetzen
 #dir to execute scripts
 if [[ $1 == "-r" ]]; then
-	echo "Functionality not yet implemented, delete mount entry in '/etc/fstab' and '.mntpoint.txt' '.nfsipaddr.txt' and 'updog' in ~bin/ for now. "
+	echo "Functionality is not yet implemented, delete mount entry in '/etc/fstab' and '.mntpoint.txt' '.nfsipaddr.txt' and 'updog' in ~bin/ for now. "
 	exit 1
 fi
 
 cd
-echo "Please put in the IP-address NFS-Server"
+echo "Please put in the IP-address of the NFS-Server"
 read IP
 echo "Please put in the mount point like this  /mnt/networkshare  to continue installing"
 read Mnt
