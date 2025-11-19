@@ -12,4 +12,4 @@ sudo chmod +x installupdog.sh
 updog myfile.filenameextension
 
 You can reconfigure the IP of the server in ~bin/nfsipaddr.txt.
-Smae for the mountpoint in ~bin/mntpoint.txt
+Same for the mountpoint in ~bin/mntpoint.txt
