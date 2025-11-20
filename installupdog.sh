@@ -3,7 +3,6 @@
 #still need to add functionality to reconfigure the nfs client (without having to go into /etc/fstab manually
 #wir behalten mntpoint.txt und nfsipaddr.txt, damit wir bei aenderung wieder den eintrag in etc/fstab finden koennen
 #den wir entfernen wollen um durch neue IP und server  mountpoint zu ersetzen
-#dir to execute scripts
 if [[ $1 == "-r" ]]; then
 	echo "Functionality not yet implemented, delete mount entry in '/etc/fstab' and '.mntpoint.txt' '.nfsipaddr.txt' and 'updog' in /usr/local/bin/ for now. "
 	exit 1
@@ -18,7 +17,7 @@ read -p "Inputs correct? (Y/N): " confirm && [[ $confirm == [yYj] || $confirm ==
 echo $Mnt > mntpoint.txt
 echo $IP > nfsipaddr.txt
 echo "You can update the IP adress and server-mountpoint the server by running installupdog.sh -r"
-
+echo " "
 
 #checks if systemd is installed so we can automount it using x-systemd.automount
 systemctl --version | grep systemd > systemdoutput 
@@ -38,8 +37,12 @@ if grep -q "$pattern" /etc/fstab; then
 	exit 1
 fi
 #adding the automount option into /etc/fstab
+cd /etc/
+cat fstab | sudo tee fstab_copy
+echo " "
 echo "$IP:$Mnt $HOME/networkfolder nfs x-systemd.automount  0  0" | sudo tee -a /etc/fstab
-
+echo "Copy of filesystem table in /etc/fstab_copy. "
+cd 
 
 if ! [[ -f "$HOME/updog" ]]; then
 cat > updog << 'EOF'
