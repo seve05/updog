@@ -61,9 +61,9 @@ else
 fi
 
 sudo chmod +x updog
-mv updog /usr/local/bin
-mv mntpoint.txt /usr/local/bin/.mntpoint.txt
-mv nfsipaddr.txt /usr/local/bin/.nfsipaddr.txt
+sudo mv updog /usr/local/bin
+sudo mv mntpoint.txt /usr/local/bin/.mntpoint.txt
+sudo mv nfsipaddr.txt /usr/local/bin/.nfsipaddr.txt
 
 #now we need to install NFS Client if not present
 sudo apt install nfs-common
