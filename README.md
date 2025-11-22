@@ -1,7 +1,7 @@
 ### When switching between machines I want no friction
 ### This script also sets up the nfs client and automounts it in /etc/fstab
 Requires: 
-A running NFS Server; the user to know the target DIR + IP 
+A running NFS Server; the user to know the target dir + ip 
 
 ### Installation w install script:
 sudo chmod +x installupdog.sh
