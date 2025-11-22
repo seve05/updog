@@ -1,4 +1,4 @@
-### Version control for my local nfs network to update files when switching machines 
+### When switching between machines I want no friction
 ### This script also sets up the nfs client and automounts it in /etc/fstab
 Requires: 
 A running NFS Server; the user to know the target DIR + IP 
