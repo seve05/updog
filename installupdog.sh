@@ -74,7 +74,7 @@ echo "Copy of filesystem table in /etc/fstab_copy. "
 cd 
 
 #----------------------------------
-if ! [[ -d "/mnt/updog" ]]; then
+if ! [[ -f "/mnt/updog" ]]; then
 cat > updog << 'EOF'
 #!/bin/bash
 if [[ -d "/mnt/networkfolder" ]]; then
@@ -92,7 +92,7 @@ fi
 #if future me ever gets asked this question: no indents because EOF syntax "here document" wont allow for it.
 #---------------------------------
 
-if ! [[ -f "/mnt/networkfolder" ]]; then
+if ! [[ -d "/mnt/networkfolder" ]]; then
 	sudo mkdir -p "/mnt/networkfolder"
 else
 	echo "cant create networkfolder, already exists, if intentional: please ignore"
@@ -108,4 +108,4 @@ sudo apt install -y nfs-common
 echo "NFS will mount now."
 sudo systemctl daemon-reload
 sudo mount -a
-echo "mounted"
+
