@@ -10,9 +10,11 @@ sudo chmod +x installupdog.sh
 ./installupdog.sh
 
 ### Once installed:
-updog myfile.filnameextension
+updog myfile.filnameextension 
+
 This simply replaces the old file in the target dir with the current one
 
 ###
 sudo .installupdog.sh -r 
+
 To reconfigure the target IP, server mountpoint
