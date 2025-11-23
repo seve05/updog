@@ -28,7 +28,7 @@ if [[ $1 == "-r" ]]; then
 	cp -f /tmp/clearedfstab fstab
 	rm /tmp/clearedfstab
 	
-	echo "$newip:$newmnt $HOME/networkfolder nfs x-systemd.automount  0  0" | sudo tee -a /etc/fstab
+	echo "$newip:$newmnt /mnt/networkfolder nfs x-systemd.automount  0  0" | sudo tee -a /etc/fstab
 	cd /usr/local/bin
 	# replace old with new or next time we run this we only add to last change
 	cp -f .mntpoint_two.txt .mntpoint.txt	
@@ -57,7 +57,7 @@ if [[ -z "$systemdeez" ]]; then
 	rm /tmp/systemdoutput
 	exit 1
 fi
-rm tmp/systemdoutput
+rm /tmp/systemdoutput
 
 
 pattern="networkfolder nfs x-systemd.automount"
@@ -69,16 +69,16 @@ fi
 cd /etc/
 sudo cp /etc/fstab /etc/fstab_copy
 echo " "
-echo "$IP:$Mnt $HOME/networkfolder nfs x-systemd.automount  0  0" | sudo tee -a /etc/fstab
+echo "$IP:$Mnt /mnt/networkfolder nfs x-systemd.automount  0  0" | sudo tee -a /etc/fstab
 echo "Copy of filesystem table in /etc/fstab_copy. "
 cd 
 
 #----------------------------------
-if ! [[ -f "$HOME/updog" ]]; then
+if ! [[ -d "/mnt/updog" ]]; then
 cat > updog << 'EOF'
 #!/bin/bash
-if [[ -d "$HOME/networkfolder" ]]; then
-	dest="$HOME/networkfolder"
+if [[ -d "/mnt/networkfolder" ]]; then
+	dest="/mnt/networkfolder"
 	cp -f "$1" "$dest"
 else
 	echo "Error no networkfolder"
@@ -92,8 +92,8 @@ fi
 #if future me ever gets asked this question: no indents because EOF syntax "here document" wont allow for it.
 #---------------------------------
 
-if ! [[ -f "$HOME/networkfolder" ]]; then
-	mkdir -p "$HOME/networkfolder"
+if ! [[ -f "/mnt/networkfolder" ]]; then
+	sudo mkdir -p "/mnt/networkfolder"
 else
 	echo "cant create networkfolder, already exists, if intentional: please ignore"
 fi
@@ -104,5 +104,8 @@ sudo mv mntpoint.txt /usr/local/bin/.mntpoint.txt
 sudo mv nfsipaddr.txt /usr/local/bin/.nfsipaddr.txt
 
 #now we need to install NFS Client if not present
-sudo apt install nfs-common
-echo "NFS will be mounted on next restart."
+sudo apt install -y nfs-common
+echo "NFS will mount now."
+sudo systemctl daemon-reload
+sudo mount -a
+echo "mounted"
