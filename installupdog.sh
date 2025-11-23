@@ -24,9 +24,9 @@ if [[ $1 == "-r" ]]; then
 	oldline=$(echo "$oldip:$oldmnt") 
 	echo "$oldline"	
 #delete fstab entry with grep inverse matching
-	grep -v "$oldline" fstab > clearedfstab
-	cp -f clearedfstab fstab
-	rm clearedfstab
+	grep -v "$oldline" fstab > /tmp/clearedfstab
+	cp -f /tmp/clearedfstab fstab
+	rm /tmp/clearedfstab
 	
 	echo "$newip:$newmnt $HOME/networkfolder nfs x-systemd.automount  0  0" | sudo tee -a /etc/fstab
 	cd /usr/local/bin
@@ -49,15 +49,15 @@ echo "You can update the IP adress and server-mountpoint the server by running s
 echo " "
 
 #checks if systemd is installed so we can automount it using x-systemd.automount
-systemctl --version | grep systemd > systemdoutput 
-systemdeez=$(cat "$HOME/systemdoutput")
+systemctl --version | grep systemd > /tmp/systemdoutput 
+systemdeez=$(cat "/tmp/systemdoutput")
 #-z is TRUE if the string is EMPTY
 if [[ -z "$systemdeez" ]]; then
 	echo "Error, there is no systemd installed we cannot use automount to mount client-side"
-	rm systemdoutput
+	rm /tmp/systemdoutput
 	exit 1
 fi
-rm systemdoutput
+rm tmp/systemdoutput
 
 
 pattern="networkfolder nfs x-systemd.automount"
@@ -104,6 +104,5 @@ sudo mv mntpoint.txt /usr/local/bin/.mntpoint.txt
 sudo mv nfsipaddr.txt /usr/local/bin/.nfsipaddr.txt
 
 #now we need to install NFS Client if not present
-#should add support for more package mangers
 sudo apt install nfs-common
 echo "NFS will be mounted on next restart."
