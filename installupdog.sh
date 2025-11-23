@@ -40,13 +40,13 @@ fi
 cd
 echo "Please put in the IP-address of the NFS-Server"
 read IP
-echo "Please put in the server mount point like this  /mnt/networkshare  to continue installing"
+echo "Please put in the server mountpoint like this  /mnt/networkshare  to continue installing"
 read Mnt
 read -p "Inputs correct? (Y/N): " confirm && [[ $confirm == [yYj] || $confirm == [yY][eE][sS] ]] || exit 1
 echo $Mnt > mntpoint.txt
 echo $IP > nfsipaddr.txt
-echo "You can update the IP adress and server-mountpoint the server by running sudo installupdog.sh -r"
-echo "On this machine the mount point is /mnt/networkfolder"
+echo "You can update the IP adress and server mountpoint by running sudo installupdog.sh -r"
+echo "On this machine the mountpoint is /mnt/networkfolder"
 echo " "
 
 #checks if systemd is installed so we can automount it using x-systemd.automount
@@ -54,7 +54,7 @@ systemctl --version | grep systemd > /tmp/systemdoutput
 systemdeez=$(cat "/tmp/systemdoutput")
 #-z is TRUE if the string is EMPTY
 if [[ -z "$systemdeez" ]]; then
-	echo "Error, there is no systemd installed we cannot use automount to mount client-side"
+	echo "Error, there is no systemd installed we cannot use automount to mount client-side in fstab"
 	rm /tmp/systemdoutput
 	exit 1
 fi
