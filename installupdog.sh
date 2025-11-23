@@ -40,8 +40,9 @@ fi
 cd
 echo "Please put in the IP-address of the NFS-Server"
 read IP
-echo "Please put in the mount point like this  /mnt/networkshare  to continue installing"
+echo "Please put in the server mount point like this  /mnt/networkshare  to continue installing"
 read Mnt
+echo "On this machine the mount point is /mnt/networkfolder"
 read -p "Inputs correct? (Y/N): " confirm && [[ $confirm == [yYj] || $confirm == [yY][eE][sS] ]] || exit 1
 echo $Mnt > mntpoint.txt
 echo $IP > nfsipaddr.txt
