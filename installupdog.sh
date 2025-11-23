@@ -42,11 +42,11 @@ echo "Please put in the IP-address of the NFS-Server"
 read IP
 echo "Please put in the server mount point like this  /mnt/networkshare  to continue installing"
 read Mnt
-echo "On this machine the mount point is /mnt/networkfolder"
 read -p "Inputs correct? (Y/N): " confirm && [[ $confirm == [yYj] || $confirm == [yY][eE][sS] ]] || exit 1
 echo $Mnt > mntpoint.txt
 echo $IP > nfsipaddr.txt
 echo "You can update the IP adress and server-mountpoint the server by running sudo installupdog.sh -r"
+echo "On this machine the mount point is /mnt/networkfolder"
 echo " "
 
 #checks if systemd is installed so we can automount it using x-systemd.automount
