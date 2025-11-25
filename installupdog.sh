@@ -9,6 +9,8 @@
 # - making it possible to have many nfs systems in /etc/fstab (by checking more specifically)
 # - use rsync instead of cp because this only copies the diff. Also can be useful for backups
 # - implement backups while im at it
+# -> add another local dir mnt/backup add in etc/fstab/ and make command like updog -b that then has destination as that /mnt/backup
+# -> needs to be configured on server beforehand
 # - rsync -z for compression before sending when back up
 
 if [[ $1 == "-r" ]]; then
@@ -38,11 +40,12 @@ if [[ $1 == "-r" ]]; then
 	cp -f /tmp/clearedfstab fstab
 	rm /tmp/clearedfstab
 	
-	echo "$newip:$newmnt /mnt/networkfolder nfs x-systemd.automount  0  0" | sudo tee -a /etc/fstab
+	echo "$newip:$newmnt /mnt/networkfolder nfs defaults  0  0" | sudo tee -a /etc/fstab
 	cd /usr/local/bin
 	# replace old with new or next time we run this we only add to last change
 	cp -f .mntpoint_two.txt .mntpoint.txt	
 	cp -f .nfsipaddr_two.txt .nfsipaddr.txt	
+	sudo mount -a
 	printf "Changed successfully."	
 	exit 0
 fi
