@@ -85,11 +85,11 @@ cd
 if ! [[ -f "/mnt/updog" ]]; then
 cat > updog << 'EOF'
 #!/bin/bash
-if [[ -d "$1"]]; then
-	dest="/mnt/networkfolder"
-	cp -rf "$1" "$dest"
-fi
 if [[ -d "/mnt/networkfolder" ]]; then
+	if [[ -d "$1" ]]; then
+		dest="/mnt/networkfolder"
+		cp -rf "$1" "$dest"
+	fi
 	dest="/mnt/networkfolder"
 	cp -f "$1" "$dest"
 else
