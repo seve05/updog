@@ -7,6 +7,9 @@
 # rsync does this, by only copying the changed files, maybe use rsync instead of cp ?
 # ToDo :
 # - making it possible to have many nfs systems in /etc/fstab (by checking more specifically)
+# - use rsync instead of cp because this only copies the diff. Also can be useful for backups
+# - implement backups while im at it
+# - rsync -z for compression before sending when back up
 
 if [[ $1 == "-r" ]]; then
 #need to add .nfsipaddr_two.txt in /usr/local/bin/
