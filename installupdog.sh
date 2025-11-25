@@ -1,6 +1,12 @@
 #!/bin/bash
 
 # option -r to reconfigure the mount and ip, also edits etc/fstab to remove old entry+add new
+# add functionality to back up files as well 
+# maybe updog -b in the actual script
+# how would we best back up our files ?
+# rsync does this, by only copying the changed files, maybe use rsync instead of cp ?
+
+
 if [[ $1 == "-r" ]]; then
 #need to add .nfsipaddr_two.txt in /usr/local/bin/
 	cd /usr/local/bin
@@ -61,7 +67,7 @@ fi
 rm /tmp/systemdoutput
 
 
-pattern="networkfolder nfs x-systemd.automount"
+pattern="networkfolder nfs"
 if grep -q "$pattern" /etc/fstab; then
 	echo "Already added mounting option in fstab, exiting"
 	exit 1
@@ -70,7 +76,7 @@ fi
 cd /etc/
 sudo cp /etc/fstab /etc/fstab_copy
 echo " "
-echo "$IP:$Mnt /mnt/networkfolder nfs x-systemd.automount  0  0" | sudo tee -a /etc/fstab
+echo "$IP:$Mnt /mnt/networkfolder nfs defaults  0  0" | sudo tee -a /etc/fstab
 echo "Copy of filesystem table in /etc/fstab_copy. "
 cd 
 
@@ -95,6 +101,7 @@ fi
 
 if ! [[ -d "/mnt/networkfolder" ]]; then
 	sudo mkdir -p "/mnt/networkfolder"
+	sudo chmod 777 "/mnt/networkfolder"
 else
 	echo "cant create networkfolder, already exists, if intentional: please ignore"
 fi
