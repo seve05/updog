@@ -5,7 +5,8 @@
 # maybe updog -b in the actual script
 # how would we best back up our files ?
 # rsync does this, by only copying the changed files, maybe use rsync instead of cp ?
-
+# ToDo :
+# - making it possible to have many nfs systems in /etc/fstab (by checking more specifically)
 
 if [[ $1 == "-r" ]]; then
 #need to add .nfsipaddr_two.txt in /usr/local/bin/
@@ -66,7 +67,7 @@ if [[ -z "$systemdeez" ]]; then
 fi
 rm /tmp/systemdoutput
 
-
+#! this onesollte man noch konkreter machen, jetzt wird es wenn nfs schon irgendwo eingetragen ist failen
 pattern="networkfolder nfs"
 if grep -q "$pattern" /etc/fstab; then
 	echo "Already added mounting option in fstab, exiting"
@@ -84,6 +85,10 @@ cd
 if ! [[ -f "/mnt/updog" ]]; then
 cat > updog << 'EOF'
 #!/bin/bash
+if [[ -d "$1"]]; then
+	dest="/mnt/networkfolder"
+	cp -rf "$1" "$dest"
+fi
 if [[ -d "/mnt/networkfolder" ]]; then
 	dest="/mnt/networkfolder"
 	cp -f "$1" "$dest"
