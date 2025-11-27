@@ -40,7 +40,7 @@ if [[ $1 == "-r" ]]; then
 	cp -f /tmp/clearedfstab fstab
 	rm /tmp/clearedfstab
 	
-	echo "$newip:$newmnt /mnt/networkfolder nfs defaults  0  0" | sudo tee -a /etc/fstab
+	echo "$newip:$newmnt /mnt/networkfolder nfs defaults,nofail  0  0" | sudo tee -a /etc/fstab
 	cd /usr/local/bin
 	# replace old with new or next time we run this we only add to last change
 	cp -f .mntpoint_two.txt .mntpoint.txt	
@@ -83,7 +83,7 @@ fi
 cd /etc/
 sudo cp /etc/fstab /etc/fstab_copy
 echo " "
-echo "$IP:$Mnt /mnt/networkfolder nfs defaults  0  0" | sudo tee -a /etc/fstab
+echo "$IP:$Mnt /mnt/networkfolder nfs defaults,nofail  0  0" | sudo tee -a /etc/fstab
 echo "Copy of filesystem table in /etc/fstab_copy. "
 cd 
 
