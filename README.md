@@ -15,7 +15,7 @@ updog Myfile.filnameextension
 updog Mydirectory
 
 
-shis simply replaces the old file in the target dir with the current one
+This performs some checks and replaces the old file in the target dir with the current one 
 
 ###
 sudo ./installupdog.sh -r 
